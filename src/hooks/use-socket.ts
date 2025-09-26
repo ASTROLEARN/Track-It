@@ -27,7 +27,12 @@ interface AIRecognitionUpdate {
   timestamp: string;
 }
 
-export const useSocket = (url: string = 'http://localhost:3000') => {
+export const useSocket = (url?: string) => {
+  // Determine the socket URL based on environment
+  const socketUrl = url || (typeof window !== 'undefined' 
+    ? `${window.location.protocol}//${window.location.host}` 
+    : 'http://localhost:3000')
+  
   const socketRef = useRef<Socket | null>(null)
   const [isConnected, setIsConnected] = useState(false)
   const [connectionError, setConnectionError] = useState<string | null>(null)
@@ -40,7 +45,7 @@ export const useSocket = (url: string = 'http://localhost:3000') => {
     let isMounted = true
 
     try {
-      socket = io(url, {
+      socket = io(socketUrl, {
         path: '/api/socketio',
         transports: ['websocket', 'polling'],
         timeout: 5000,

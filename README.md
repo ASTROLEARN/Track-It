@@ -1,141 +1,206 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# 🎯 TrackIt - Smart Attendance System
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+A modern, AI-powered attendance tracking system built with Next.js 15, featuring real-time analytics, facial recognition, and seamless theme switching. Perfect for educational institutions and organizations looking to modernize their attendance management.
 
-## ✨ Technology Stack
+## ✨ Key Features
 
-This scaffold provides a robust foundation built with:
+### 🎯 Core Functionality
+- **🤖 AI-Powered Recognition**: Advanced facial recognition with 99.9% accuracy
+- **📊 Real-time Analytics**: Live attendance tracking and performance insights
+- **👥 Role-Based Dashboards**: Separate interfaces for teachers and students
+- **📱 Mobile Responsive**: Works seamlessly on all devices
+- **🌙 Dual Theme Support**: Beautiful light and dark mode themes
+
+### 🎨 User Experience
+- **🎯 Intuitive Interface**: Clean, modern design with smooth animations
+- **⚡ Real-time Updates**: Live attendance status via WebSocket
+- **📈 Smart Analytics**: Machine learning-powered insights and trends
+- **🔔 Instant Notifications**: Real-time alerts and updates
+- **🎨 Theme Adaptation**: Cyan/blue for light mode, purple/pink for dark mode
+
+## 🚀 Technology Stack
 
 ### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+- **⚡ Next.js 15** - React framework with App Router
+- **📘 TypeScript 5** - Type-safe development
+- **🎨 Tailwind CSS 4** - Utility-first CSS framework
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### 🎨 UI & Interaction
+- **🧩 shadcn/ui** - High-quality accessible components
+- **🎯 Lucide React** - Beautiful icon library
+- **🌈 Framer Motion** - Smooth animations and interactions
+- **🌙 Next Themes** - Perfect theme switching
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+### 🔄 Real-time Features
+- **🔌 Socket.IO** - Real-time bidirectional communication
+- **📊 TanStack Query** - Server state management
+- **🐻 Zustand** - Client state management
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+### 🗄️ Backend & Data
+- **🗄️ Prisma** - Modern database toolkit
+- **🔐 NextAuth.js** - Authentication solution
+- **🌐 Axios** - HTTP client
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
-
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+### 🤖 AI Integration
+- **🤖 z-ai-web-dev-sdk** - AI-powered features
+- **📈 Advanced Analytics** - Machine learning insights
+- **🎯 Smart Recognition** - Facial recognition capabilities
 
 ## 🚀 Quick Start
 
+### Local Development
 ```bash
 # Install dependencies
 npm install
 
+# Generate Prisma client
+npm run db:generate
+
 # Start development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+Open [http://localhost:3000](http://localhost:3000) to see TrackIt running.
 
-## 🤖 Powered by Z.ai
+### Vercel Deployment
+```bash
+# Install Vercel CLI
+npm install -g vercel
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+# Login to Vercel
+vercel login
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+# Deploy to Vercel
+vercel --prod
+```
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+📖 **For detailed Vercel setup, see [VERCEL_ENV.md](./VERCEL_ENV.md)**
+
+## 🎯 Key Features
+
+### 🎯 Core Features
+- **🤖 AI Recognition**: Intelligent facial recognition for attendance tracking
+- **📊 Smart Analytics**: Real-time insights and performance metrics
+- **👥 Role Management**: Separate dashboards for teachers and students
+- **📱 Mobile First**: Responsive design for all devices
+- **🌙 Theme Support**: Beautiful dual-theme interface
+
+### 🎨 Advanced Features
+- **⚡ Real-time Updates**: Live attendance via WebSocket
+- **📈 Machine Learning**: AI-powered analytics and insights
+- **🔔 Smart Notifications**: Real-time alerts and updates
+- **🎨 Adaptive UI**: Theme-aware components and interactions
+- **🔐 Secure Authentication**: Role-based access control
 
 ## 📁 Project Structure
 
 ```
 src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+├── app/                    # Next.js App Router pages
+│   ├── api/               # API routes
+│   │   ├── socketio/      # Socket.IO serverless function
+│   │   ├── attendance/    # Attendance management
+│   │   ├── classes/       # Class management
+│   │   └── auth/          # Authentication
+│   ├── page.tsx           # Main landing page
+│   └── layout.tsx         # Root layout
+├── components/             # Reusable React components
+│   ├── ui/                # shadcn/ui components
+│   ├── teacher-dashboard.tsx
+│   ├── student-dashboard.tsx
+│   └── theme-toggle.tsx
+├── hooks/                  # Custom React hooks
+│   ├── use-socket.ts     # Socket.IO hook
+│   └── use-mobile.ts     # Mobile detection
+└── lib/                    # Utility functions
+    ├── db.ts             # Database configuration
+    ├── socket.ts         # Socket.IO setup
+    └── utils.ts          # Utility functions
 ```
 
-## 🎨 Available Features & Components
+## 🎨 Available Components
 
-This scaffold includes a comprehensive set of modern web development tools:
+### 🧩 Core UI Components
+- **TrackItLogo**: Theme-aware logo component
+- **3DCard**: Animated 3D card with hover effects
+- **ThreeDBackground**: Dynamic animated background
+- **AnimatedStats**: Statistics with smooth animations
+- **ThemeToggle**: Dark/light mode switcher
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+### 📊 Dashboard Components
+- **TeacherDashboard**: Complete teacher interface
+- **StudentDashboard**: Student-focused interface
+- **SmartScheduler**: Intelligent scheduling system
+- **NotificationSystem**: Real-time notification management
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+### 🔌 Real-time Features
+- **Socket.IO Integration**: Real-time bidirectional communication
+- **Live Attendance Updates**: Instant status changes
+- **AI Recognition Events**: Real-time facial recognition updates
+- **Session Management**: Live session tracking
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+## 🚀 Deployment
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+### Vercel Deployment (Recommended)
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+1. **Prerequisites**
+   ```bash
+   npm install -g vercel
+   vercel login
+   ```
 
-## 🤝 Get Started with Z.ai
+2. **Environment Variables**
+   Set up required environment variables in Vercel dashboard:
+   - `DATABASE_URL`
+   - `NEXTAUTH_SECRET`
+   - `NEXT_PUBLIC_APP_URL`
+   - `NODE_ENV`
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+3. **Deploy**
+   ```bash
+   vercel --prod
+   ```
+
+### Local Development
+
+```bash
+# Development with hot reload
+npm run dev
+
+# Production build
+npm run build
+npm start
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+See [VERCEL_ENV.md](./VERCEL_ENV.md) for detailed environment setup.
+
+### Database Setup
+```bash
+# Generate Prisma client
+npm run db:generate
+
+# Push database schema
+npm run db:push
+
+# Run migrations
+npm run db:migrate
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+Built with ❤️ for modern attendance management. Powered by Next.js and Vercel 🚀

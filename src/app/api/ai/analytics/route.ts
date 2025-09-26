@@ -73,7 +73,8 @@ export async function POST(request: NextRequest) {
       averageConfidence: attendanceData
         .filter(a => a.confidence !== null)
         .reduce((sum, a) => sum + (a.confidence || 0), 0) / 
-        attendanceData.filter(a => a.confidence !== null).length
+        attendanceData.filter(a => a.confidence !== null).length,
+      attendanceRate: 0
     }
 
     stats.attendanceRate = ((stats.presentCount + stats.excusedCount) / stats.totalRecords) * 100

@@ -1,24 +1,47 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Vercel-specific configuration
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // Set to false for production builds
   },
-  // 禁用 Next.js 热重载，由 nodemon 处理重编译
-  reactStrictMode: false,
-  webpack: (config, { dev }) => {
-    if (dev) {
-      // 禁用 webpack 的热模块替换
-      config.watchOptions = {
-        ignored: ['**/*'], // 忽略所有文件变化
-      };
+  reactStrictMode: true, // Enable for production
+  
+  // Experimental features for better performance
+  experimental: {
+    optimizeCss: true,
+  },
+  
+  // Images configuration for Vercel
+  images: {
+    domains: ['localhost'],
+    unoptimized: false,
+  },
+  
+  // Compression
+  compress: true,
+  
+  // Environment variables that should be available to the client
+  env: {
+    CUSTOM_KEY: process.env.CUSTOM_KEY,
+  },
+  
+  // Webpack configuration
+  webpack: (config, { dev, isServer }) => {
+    // Optimization for production builds
+    if (!dev && !isServer) {
+      Object.assign(config.resolve.alias, {
+        'react/jsx-runtime.js': 'react/jsx-runtime.js',
+        'react/jsx-dev-runtime.js': 'react/jsx-dev-runtime.js',
+      });
     }
+    
     return config;
   },
+  
+  // ESLint configuration for builds
   eslint: {
-    // 构建时忽略ESLint错误
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false, // Set to false for production builds
   },
 };
 
