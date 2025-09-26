@@ -74,6 +74,7 @@ vercel login
 vercel --prod
 ```
 
+<<<<<<< HEAD
 📖 **For detailed Vercel setup, see [VERCEL_ENV.md](./VERCEL_ENV.md)**
 
 ## 🎯 Key Features
@@ -91,7 +92,29 @@ vercel --prod
 - **🔔 Smart Notifications**: Real-time alerts and updates
 - **🎨 Adaptive UI**: Theme-aware components and interactions
 - **🔐 Secure Authentication**: Role-based access control
+=======
+<<<<<<< HEAD
+=======
+📖 **For detailed Vercel setup, see [VERCEL_ENV.md](./VERCEL_ENV.md)**
+>>>>>>> 9727c8f
 
+## 🎯 Key Features
+
+### 🎯 Core Features
+- **🤖 AI Recognition**: Intelligent facial recognition for attendance tracking
+- **📊 Smart Analytics**: Real-time insights and performance metrics
+- **👥 Role Management**: Separate dashboards for teachers and students
+- **📱 Mobile First**: Responsive design for all devices
+- **🌙 Theme Support**: Beautiful dual-theme interface
+
+### 🎨 Advanced Features
+- **⚡ Real-time Updates**: Live attendance via WebSocket
+- **📈 Machine Learning**: AI-powered analytics and insights
+- **🔔 Smart Notifications**: Real-time alerts and updates
+- **🎨 Adaptive UI**: Theme-aware components and interactions
+- **🔐 Secure Authentication**: Role-based access control
+
+>>>>>>> 5ef4665 (Add Vercel deployment configuration and fixes)
 ## 📁 Project Structure
 
 ```
@@ -149,6 +172,7 @@ src/
    vercel login
    ```
 
+<<<<<<< HEAD
 2. **Environment Variables**
    Set up required environment variables in Vercel dashboard:
    - `DATABASE_URL`
@@ -156,6 +180,18 @@ src/
    - `NEXT_PUBLIC_APP_URL`
    - `NODE_ENV`
 
+=======
+<<<<<<< HEAD
+
+=======
+2. **Environment Variables**
+   Set up required environment variables in Vercel dashboard:
+   - `DATABASE_URL`
+   - `NEXTAUTH_SECRET`
+   - `NEXT_PUBLIC_APP_URL`
+   - `NODE_ENV`
+
+>>>>>>> 9727c8f
 3. **Deploy**
    ```bash
    vercel --prod
@@ -204,3 +240,7 @@ This project is licensed under the MIT License.
 ---
 
 Built with ❤️ for modern attendance management. Powered by Next.js and Vercel 🚀
+<<<<<<< HEAD
+=======
+>>>>>>> 5ef4665 (Add Vercel deployment configuration and fixes)
+>>>>>>> 9727c8f
