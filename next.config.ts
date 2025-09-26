@@ -11,11 +11,36 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
   },
+
+  // Replit host configuration
+  ...(process.env.NODE_ENV === 'development' && {
+    async rewrites() {
+      return []
+    },
+    async redirects() {
+      return []
+    },
+  }),
   
   // Images configuration for Vercel
   images: {
     domains: ['localhost'],
     unoptimized: false,
+  },
+
+  // Replit environment configuration
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate'
+          }
+        ]
+      }
+    ]
   },
   
   // Compression
