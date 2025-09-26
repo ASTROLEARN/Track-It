@@ -11,8 +11,8 @@
   "devCommand": "npm run dev",
   "framework": "nextjs",
   "functions": {
-    "api/socketio.js": {
-      "runtime": "nodejs18.x"
+    "api/*.js": {
+      "runtime": "nodejs20.x"
     }
   },
   "headers": [
