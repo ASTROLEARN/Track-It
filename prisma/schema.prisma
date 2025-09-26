@@ -1,0 +1,457 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      UserRole @default(STUDENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  teacherClasses Class[] @relation("TeacherClasses")
+  studentClasses ClassStudent[]
+  attendance     Attendance[]
+  
+  // New feature relations
+  scheduleItems  ScheduleItem[]
+  userSkills     UserSkill[]
+  careerGoals    CareerGoal[]
+  learningPaths  LearningPath[]
+  
+  @@map("users")
+}
+
+model Class {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  teacherId   String
+  startTime   DateTime
+  endTime     DateTime
+  daysOfWeek  String   // JSON array of days (e.g., ["Monday", "Wednesday"])
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  teacher     User            @relation("TeacherClasses", fields: [teacherId], references: [id])
+  students    ClassStudent[]
+  sessions    AttendanceSession[]
+
+  @@map("classes")
+}
+
+model ClassStudent {
+  id        String   @id @default(cuid())
+  classId   String
+  studentId String
+  joinedAt  DateTime @default(now())
+
+  // Relations
+  class   Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student User    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([classId, studentId])
+  @@map("class_students")
+}
+
+model AttendanceSession {
+  id          String   @id @default(cuid())
+  classId     String
+  date        DateTime @default(now())
+  startTime   DateTime
+  endTime     DateTime
+  isActive    Boolean  @default(true)
+  aiAnalysis  String?  // JSON string containing AI analysis results
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  class      Class        @relation(fields: [classId], references: [id], onDelete: Cascade)
+  attendance Attendance[]
+
+  @@map("attendance_sessions")
+}
+
+model Attendance {
+  id          String            @id @default(cuid())
+  sessionId   String
+  studentId   String
+  status      AttendanceStatus  @default(ABSENT)
+  checkInTime DateTime?
+  checkOutTime DateTime?
+  method      CheckInMethod     @default(MANUAL)
+  confidence  Float?            // AI confidence score for facial recognition
+  notes       String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  // Relations
+  session AttendanceSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  student User             @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, studentId])
+  @@map("attendance")
+}
+
+enum UserRole {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
+}
+
+enum CheckInMethod {
+  MANUAL
+  FACIAL_RECOGNITION
+  QR_CODE
+  BIOMETRIC
+}
+
+// Scheduler models
+model ScheduleItem {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  description String?
+  date        DateTime
+  startTime   DateTime
+  endTime     DateTime
+  type        ScheduleType
+  priority    Priority   @default(MEDIUM)
+  status      ScheduleStatus @default(SCHEDULED)
+  aiOptimized Boolean   @default(false)
+  location    String?
+  notes       String?
+  reminders   String?  // JSON array of minutes before event
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skills      UserSkill[]
+  careerGoals CareerGoal[]
+
+  @@map("schedule_items")
+}
+
+// Skill tracking models
+model Skill {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  category    SkillCategory
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  userSkills  UserSkill[]
+  learningPaths LearningPathSkill[]
+
+  @@map("skills")
+}
+
+model UserSkill {
+  id             String   @id @default(cuid())
+  userId         String
+  skillId        String
+  level          Float    @default(0) // 0-100
+  targetLevel    Float    @default(100)
+  practiceStreak Int      @default(0)
+  lastPracticed  DateTime?
+  notes          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skill          Skill          @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  milestones     SkillMilestone[]
+  scheduleItems  ScheduleItem[]
+  recommendations SkillRecommendation[]
+
+  @@unique([userId, skillId])
+  @@map("user_skills")
+}
+
+model SkillMilestone {
+  id          String   @id @default(cuid())
+  userSkillId  String
+  title       String
+  description String
+  targetLevel Float
+  completed   Boolean  @default(false)
+  completedAt DateTime?
+  resources   String?  // JSON array of resource links/names
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  userSkill    UserSkill @relation(fields: [userSkillId], references: [id], onDelete: Cascade)
+
+  @@map("skill_milestones")
+}
+
+model SkillRecommendation {
+  id             String   @id @default(cuid())
+  userSkillId    String
+  type           RecommendationType
+  title          String
+  description    String
+  priority       Priority   @default(MEDIUM)
+  estimatedTime  String?
+  confidence     Float
+  actionable     Boolean   @default(true)
+  dismissed      Boolean   @default(false)
+  createdAt      DateTime @default(now())
+
+  // Relations
+  userSkill      UserSkill @relation(fields: [userSkillId], references: [id], onDelete: Cascade)
+
+  @@map("skill_recommendations")
+}
+
+// Career goals models
+model CareerGoal {
+  id            String   @id @default(cuid())
+  userId        String
+  title         String
+  description   String
+  category      CareerCategory
+  targetDate    DateTime
+  priority      Priority   @default(MEDIUM)
+  status        GoalStatus @default(PLANNING)
+  progress      Float    @default(0) // 0-100
+  salaryRange   String?  // JSON string
+  marketDemand  DemandLevel @default(MEDIUM)
+  alignmentScore Float    @default(0) // 0-100
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  milestones    CareerMilestone[]
+  roadmapSteps  RoadmapStep[]
+  insights      CareerInsight[]
+  scheduleItems ScheduleItem[]
+  learningPaths LearningPath[]
+
+  @@map("career_goals")
+}
+
+model CareerMilestone {
+  id           String   @id @default(cuid())
+  careerGoalId String
+  title        String
+  description  String
+  targetDate   DateTime
+  completed    Boolean  @default(false)
+  completedAt  DateTime?
+  dependencies String?  // JSON array of milestone IDs
+  skills       String?  // JSON array of skill names
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  careerGoal   CareerGoal @relation(fields: [careerGoalId], references: [id], onDelete: Cascade)
+
+  @@map("career_milestones")
+}
+
+model RoadmapStep {
+  id           String   @id @default(cuid())
+  careerGoalId String
+  title        String
+  description  String
+  duration     String
+  order        Int
+  status       StepStatus @default(NOT_STARTED)
+  skills       String?  // JSON array of skill names
+  resources    String?  // JSON array of resource links/names
+  estimatedCost Float?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  careerGoal   CareerGoal @relation(fields: [careerGoalId], references: [id], onDelete: Cascade)
+
+  @@map("roadmap_steps")
+}
+
+model CareerInsight {
+  id           String   @id @default(cuid())
+  careerGoalId String
+  type         InsightType
+  title        String
+  description  String
+  confidence   Float
+  priority     Priority   @default(MEDIUM)
+  actionable   Boolean   @default(true)
+  dismissed    Boolean   @default(false)
+  createdAt    DateTime @default(now())
+
+  // Relations
+  careerGoal   CareerGoal @relation(fields: [careerGoalId], references: [id], onDelete: Cascade)
+
+  @@map("career_insights")
+}
+
+// Learning paths models
+model LearningPath {
+  id            String   @id @default(cuid())
+  userId        String
+  title         String
+  description   String
+  industry      String?
+  duration      String
+  difficulty    DifficultyLevel @default(BEGINNER)
+  progress      Float    @default(0) // 0-100
+  careerAlignment Float  @default(0) // 0-100
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  user          User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  careerGoals   CareerGoal[]
+  skills        LearningPathSkill[]
+
+  @@map("learning_paths")
+}
+
+model LearningPathSkill {
+  id            String   @id @default(cuid())
+  learningPathId String
+  skillId       String
+  requiredLevel Float    @default(100)
+  order         Int
+  createdAt     DateTime @default(now())
+
+  // Relations
+  learningPath  LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  skill         Skill        @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([learningPathId, skillId])
+  @@map("learning_path_skills")
+}
+
+// Enums for new models
+enum ScheduleType {
+  CLASS
+  STUDY
+  EXAM
+  MEETING
+  BREAK
+  PROJECT
+  INTERVIEW
+  EVENT
+}
+
+enum ScheduleStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  POSTPONED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum SkillCategory {
+  TECHNICAL
+  SOFT
+  CREATIVE
+  LEADERSHIP
+  ANALYTICAL
+  LANGUAGE
+  BUSINESS
+  SCIENCE
+  ENGINEERING
+  ARTS
+}
+
+enum RecommendationType {
+  PRACTICE
+  RESOURCE
+  MILESTONE
+  SKILL_CONNECTION
+  COURSE
+  PROJECT
+}
+
+enum CareerCategory {
+  TECHNICAL
+  MANAGEMENT
+  ENTREPRENEURSHIP
+  ACADEMIC
+  CREATIVE
+  HEALTHCARE
+  FINANCE
+  EDUCATION
+  LEGAL
+  SALES
+}
+
+enum GoalStatus {
+  PLANNING
+  IN_PROGRESS
+  ACHIEVED
+  ON_HOLD
+  CANCELLED
+}
+
+enum DemandLevel {
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
+
+enum StepStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  BLOCKED
+}
+
+enum InsightType {
+  SKILL_GAP
+  MARKET_TREND
+  CAREER_PATH
+  RECOMMENDATION
+  SALARY_INSIGHT
+  OPPORTUNITY
+}
+
+enum DifficultyLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
