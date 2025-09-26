@@ -19,7 +19,11 @@ export async function POST(request: NextRequest) {
       include: {
         class: {
           include: {
-            students: true
+            students: {
+              include: {
+                student: true
+              }
+            }
           }
         }
       }
@@ -94,14 +98,16 @@ export async function POST(request: NextRequest) {
     // For demo purposes, we'll randomly select a student from the class
     // In a real implementation, you would use the AI to match the face against student photos
     const students = session.class.students
-    const randomStudent = students[Math.floor(Math.random() * students.length)]
+    const randomClassStudent = students[Math.floor(Math.random() * students.length)]
 
-    if (!randomStudent) {
+    if (!randomClassStudent) {
       return NextResponse.json(
         { error: 'No students found in class' },
         { status: 404 }
       )
     }
+
+    const randomStudent = randomClassStudent.student
 
     // Create or update attendance record
     const attendance = await db.attendance.upsert({

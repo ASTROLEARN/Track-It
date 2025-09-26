@@ -61,7 +61,7 @@ export function GlobalSearch() {
   const [results, setResults] = useState<SearchResult[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const searchTimeoutRef = useRef<NodeJS.Timeout>()
+  const searchTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   // Sample data for demonstration
   const sampleData: SearchResult[] = [
