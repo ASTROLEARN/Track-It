@@ -18,11 +18,11 @@ export function ThreeDBackground() {
 
   useEffect(() => {
     const colors = [
-      "rgba(249, 115, 22, 0.6)",  // Orange
       "rgba(6, 182, 212, 0.6)",   // Cyan
+      "rgba(59, 130, 246, 0.6)",  // Blue
       "rgba(16, 185, 129, 0.6)",  // Emerald
       "rgba(34, 197, 94, 0.6)",   // Green
-      "rgba(245, 158, 11, 0.6)",  // Amber
+      "rgba(168, 85, 247, 0.6)",  // Purple (for dark mode)
     ]
 
     const newParticles: Particle[] = Array.from({ length: 50 }, (_, i) => ({
@@ -45,11 +45,11 @@ export function ThreeDBackground() {
         className="absolute inset-0"
         animate={{
           background: [
-            "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
             "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)",
+            "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
             "linear-gradient(135deg, #10b981 0%, #059669 100%)",
             "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
-            "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+            "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)",
           ]
         }}
         transition={{
@@ -93,7 +93,7 @@ export function ThreeDBackground() {
       <svg className="absolute inset-0 w-full h-full opacity-10">
         <defs>
           <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(249, 115, 22, 0.3)" strokeWidth="1"/>
+            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(6, 182, 212, 0.3)" strokeWidth="1"/>
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
@@ -106,7 +106,7 @@ export function ThreeDBackground() {
             y1={i * 10 + "%"}
             x2="100%"
             y2={i * 10 + "%"}
-            stroke="rgba(249, 115, 22, 0.2)"
+            stroke="rgba(6, 182, 212, 0.2)"
             strokeWidth="1"
             animate={{
               opacity: [0.1, 0.4, 0.1],
@@ -139,7 +139,7 @@ export function ThreeDBackground() {
         }}
       >
         <motion.div
-          className="w-full h-full border-2 border-orange-400/30 rounded-lg"
+          className="w-full h-full border-2 border-cyan-400/30 dark:border-purple-400/30 rounded-lg"
           style={{ transform: "translateZ(50px)" }}
         />
       </motion.div>
@@ -161,7 +161,7 @@ export function ThreeDBackground() {
         }}
       >
         <motion.div
-          className="w-full h-full border-2 border-cyan-400/30 rounded-full"
+          className="w-full h-full border-2 border-blue-400/30 dark:border-pink-400/30 rounded-full"
           style={{ transform: "translateZ(30px)" }}
         />
       </motion.div>

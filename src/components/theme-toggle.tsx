@@ -42,7 +42,7 @@ export function ThemeToggle() {
     >
       {/* Animated background */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 dark:from-cyan-600 dark:to-emerald-600"
+        className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-cyan-400 dark:from-purple-600 dark:to-pink-600"
         initial={false}
         animate={{ 
           x: isDark ? "100%" : "-100%",

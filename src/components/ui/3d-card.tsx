@@ -60,7 +60,7 @@ export function ThreeDCard({ children, className = "", glareColor = "rgba(255,25
       }}
     >
       <Card 
-        className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-orange-900 to-slate-900 border border-orange-500/20 shadow-2xl"
+        className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900 dark:via-purple-900 border border-cyan-500/20 dark:border-purple-500/20 shadow-2xl"
         style={{
           transformStyle: "preserve-3d",
           backfaceVisibility: "hidden",
@@ -83,7 +83,7 @@ export function ThreeDCard({ children, className = "", glareColor = "rgba(255,25
         <motion.div 
           className="absolute inset-0 rounded-lg border border-transparent"
           animate={{
-            borderColor: isHovering ? "rgba(249, 115, 22, 0.5)" : "rgba(249, 115, 22, 0.1)",
+            borderColor: isHovering ? "rgba(6, 182, 212, 0.5) dark:rgba(168, 85, 247, 0.5)" : "rgba(6, 182, 212, 0.1) dark:rgba(168, 85, 247, 0.1)",
           }}
           transition={{ duration: 0.3 }}
         />

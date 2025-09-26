@@ -17,7 +17,7 @@ export function AnimatedStats({
   value, 
   change, 
   icon, 
-  color = "text-purple-600" 
+  color = "text-cyan-600 dark:text-purple-600" 
 }: AnimatedStatsProps) {
   const getChangeIcon = () => {
     if (!change) return <Minus className="w-4 h-4 text-gray-500" />
@@ -39,7 +39,7 @@ export function AnimatedStats({
       whileHover={{ scale: 1.02 }}
       className="h-full"
     >
-      <Card className="h-full bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border border-purple-200 dark:border-purple-800 shadow-lg hover:shadow-xl transition-all duration-300">
+      <Card className="h-full bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border border-cyan-200 dark:border-purple-800 shadow-lg hover:shadow-xl transition-all duration-300">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
             {title}

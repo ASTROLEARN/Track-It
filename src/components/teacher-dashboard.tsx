@@ -24,6 +24,7 @@ import { ThreeDAttendanceIcon } from "@/components/ui/3d-attendance-icon"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { SmartScheduler } from "@/components/scheduler/smart-scheduler"
 import { ThemeToggle } from "@/components/theme-toggle"
+import TrackItLogo from "@/components/ui/trackit-logo"
 
 interface Class {
   id: string
@@ -253,7 +254,7 @@ export default function TeacherDashboard() {
               <><WifiOff className="w-4 h-4 text-red-500" /><span className="text-sm text-red-600 font-medium">Offline</span></>
             )}
             {attendanceUpdates.length > 0 && (
-              <Badge variant="outline" className="ml-2 bg-orange-500/20 text-orange-700 border-orange-500/30">
+              <Badge variant="outline" className="ml-2 bg-cyan-500/20 text-cyan-700 border-cyan-500/30 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/30">
                 {attendanceUpdates.length} updates
               </Badge>
             )}
@@ -270,15 +271,9 @@ export default function TeacherDashboard() {
           transition={{ duration: 0.5 }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <motion.div 
-              className="w-12 h-12 bg-gradient-to-r from-orange-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg"
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Target className="w-6 h-6 text-white" />
-            </motion.div>
+            <TrackItLogo size="lg" showText={false} />
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-cyan-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-purple-600 dark:to-pink-600 bg-clip-text text-transparent">
                 Teacher Dashboard
               </h1>
               <p className="text-gray-600 dark:text-gray-400">Manage classes and track attendance with AI</p>
@@ -297,7 +292,7 @@ export default function TeacherDashboard() {
             title="Total Students"
             value="43"
             change={5.2}
-            icon={<Users className="w-6 h-6 text-orange-500" />}
+            icon={<Users className="w-6 h-6 text-cyan-500 dark:text-purple-500" />}
           />
           <AnimatedStats
             title="Average Attendance"
@@ -354,7 +349,7 @@ export default function TeacherDashboard() {
               <Dialog open={isCreateClassOpen} onOpenChange={setIsCreateClassOpen}>
                 <DialogTrigger asChild>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button className="bg-gradient-to-r from-orange-500 to-cyan-500 hover:from-orange-600 hover:to-cyan-600 text-white font-semibold shadow-lg">
+                    <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg">
                       <Plus className="w-4 h-4 mr-2" />
                       Create Class
                     </Button>
@@ -375,7 +370,7 @@ export default function TeacherDashboard() {
                         value={newClass.name}
                         onChange={(e) => setNewClass({ ...newClass, name: e.target.value })}
                         placeholder="Computer Science 101"
-                        className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500"
+                        className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-cyan-500 focus:ring-cyan-500"
                       />
                     </div>
                     <div>
@@ -385,7 +380,7 @@ export default function TeacherDashboard() {
                         value={newClass.description}
                         onChange={(e) => setNewClass({ ...newClass, description: e.target.value })}
                         placeholder="Introduction to Programming"
-                        className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500"
+                        className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-cyan-500 focus:ring-cyan-500"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -396,7 +391,7 @@ export default function TeacherDashboard() {
                           type="time"
                           value={newClass.startTime}
                           onChange={(e) => setNewClass({ ...newClass, startTime: e.target.value })}
-                          className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500"
+                          className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-cyan-500 focus:ring-cyan-500"
                         />
                       </div>
                       <div>
@@ -406,7 +401,7 @@ export default function TeacherDashboard() {
                           type="time"
                           value={newClass.endTime}
                           onChange={(e) => setNewClass({ ...newClass, endTime: e.target.value })}
-                          className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500"
+                          className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-cyan-500 focus:ring-cyan-500"
                         />
                       </div>
                     </div>

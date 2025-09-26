@@ -27,7 +27,7 @@ export function AnimatedCharts({ data, title, type, icon }: AnimatedChartsProps)
       transition={{ duration: 0.5 }}
       className="h-full"
     >
-      <Card className="h-full bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border border-purple-200 dark:border-purple-800 shadow-lg">
+      <Card className="h-full bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border border-cyan-200 dark:border-purple-800 shadow-lg">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <CardTitle className="text-lg font-semibold flex items-center gap-2">
             {icon}
@@ -94,7 +94,7 @@ export function AnimatedCharts({ data, title, type, icon }: AnimatedChartsProps)
                     y1={i * 50}
                     x2="400"
                     y2={i * 50}
-                    stroke="rgba(168, 85, 247, 0.1)"
+                    stroke="rgba(6, 182, 212, 0.1) dark:rgba(168, 85, 247, 0.1)"
                     strokeWidth="1"
                   />
                 ))}
@@ -113,8 +113,8 @@ export function AnimatedCharts({ data, title, type, icon }: AnimatedChartsProps)
                 {/* Gradient Definition */}
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#8b5cf6" />
-                    <stop offset="100%" stopColor="#ec4899" />
+                    <stop offset="0%" stopColor="#06b6d4" />
+                    <stop offset="100%" stopColor="#3b82f6" />
                   </linearGradient>
                 </defs>
                 
@@ -159,7 +159,7 @@ export function AnimatedDonutChart({ data, title, size = 200 }: DonutChartProps)
       transition={{ duration: 0.5 }}
       className="flex flex-col items-center"
     >
-      <Card className="bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border border-purple-200 dark:border-purple-800 shadow-lg p-6">
+      <Card className="bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border border-cyan-200 dark:border-purple-800 shadow-lg p-6">
         <CardHeader className="text-center pb-4">
           <CardTitle className="text-lg font-semibold">{title}</CardTitle>
         </CardHeader>

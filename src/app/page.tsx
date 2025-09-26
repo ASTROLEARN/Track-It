@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { User, GraduationCap, Users, Calendar, Camera, BarChart3, Sparkles, Zap } from "lucide-react"
+import { User, GraduationCap, Users, Calendar, Camera, BarChart3, Sparkles, Zap, Target } from "lucide-react"
 import TeacherDashboard from "@/components/teacher-dashboard"
 import StudentDashboard from "@/components/student-dashboard"
 import { Badge } from "@/components/ui/badge"
@@ -23,6 +23,7 @@ import { KeyboardShortcuts } from "@/components/accessibility/keyboard-shortcuts
 import { NotificationSystem } from "@/components/notifications/notification-system"
 import { MobileNav } from "@/components/navigation/mobile-nav"
 import { GlobalSearch } from "@/components/search/global-search"
+import TrackItLogo from "@/components/ui/trackit-logo"
 
 export default function Home() {
   const [selectedRole, setSelectedRole] = useState<string>("")
@@ -72,21 +73,7 @@ export default function Home() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.div 
-                  className="w-10 h-10 bg-gradient-to-r from-orange-500 to-cyan-500 rounded-xl flex items-center justify-center mr-3 shadow-lg"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Calendar className="w-6 h-6 text-white" />
-                </motion.div>
-                <motion.h1 
-                  className="text-xl font-bold bg-gradient-to-r from-orange-500 to-cyan-500 bg-clip-text text-transparent"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  AI Attendance System
-                </motion.h1>
+                <TrackItLogo size="md" />
               </motion.div>
 
               {/* Desktop Navigation */}
@@ -95,14 +82,14 @@ export default function Home() {
                 <NotificationSystem />
                 <KeyboardShortcuts />
                 <motion.span 
-                  className="text-sm text-gray-600 dark:text-gray-300"
+                  className="text-sm text-gray-700 dark:text-gray-300"
                   whileHover={{ scale: 1.05 }}
                 >
                   Welcome, {name || email}
                 </motion.span>
                 <Badge 
                   variant="outline" 
-                  className="bg-white dark:bg-black border-orange-500 text-orange-700 dark:text-orange-300 font-medium"
+                  className="bg-white dark:bg-black border-cyan-500 dark:border-purple-500 text-cyan-700 dark:text-purple-300 font-medium"
                 >
                   {selectedRole === "teacher" ? "Teacher" : "Student"}
                 </Badge>
@@ -151,14 +138,9 @@ export default function Home() {
         >
           <ThemeToggleIcon />
           
-          <motion.h1 
-            className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            AI Attendance System
-          </motion.h1>
+          <div className="flex justify-center mb-8">
+            <TrackItLogo size="lg" />
+          </div>
           
           <motion.p 
             className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed"
@@ -166,20 +148,20 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Revolutionize attendance tracking with 
-            <span className="font-semibold text-orange-600 dark:text-orange-400"> AI-powered </span>
+            Smart attendance tracking with 
+            <span className="font-semibold text-cyan-600 dark:text-purple-400"> AI-powered </span>
             facial recognition and 
-            <span className="font-semibold text-cyan-600 dark:text-cyan-400"> real-time analytics</span>
+            <span className="font-semibold text-blue-600 dark:text-pink-400"> real-time analytics</span>
           </motion.p>
           
           <motion.div 
-            className="flex justify-center items-center gap-2 text-orange-600 dark:text-orange-400"
+            className="flex justify-center items-center gap-2 text-cyan-600 dark:text-purple-400"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
             <Sparkles className="w-5 h-5 animate-pulse" />
-            <span className="text-lg font-medium">Next-Generation Educational Technology</span>
+            <span className="text-lg font-medium">Smart Attendance Tracking</span>
             <Sparkles className="w-5 h-5 animate-pulse" />
           </motion.div>
         </motion.div>
@@ -194,17 +176,17 @@ export default function Home() {
           <ThreeDCard className="transform hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <motion.div 
-                className="w-20 h-20 bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl"
+                className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-purple-500 dark:to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.5 }}
               >
                 <Camera className="w-10 h-10 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                AI Recognition
+              <h3 className="text-2xl font-bold text-white dark:text-white mb-4">
+                Smart Recognition
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Advanced facial recognition with 99.9% accuracy for secure and seamless attendance tracking
+              <p className="text-gray-100 dark:text-gray-300 leading-relaxed">
+                Intelligent recognition with 99.9% accuracy for seamless attendance tracking
               </p>
               <div className="mt-4 flex justify-center">
                 <ThreeDAttendanceIcon type="checking" size={40} />
@@ -215,17 +197,17 @@ export default function Home() {
           <ThreeDCard className="transform hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <motion.div 
-                className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl"
+                className="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-pink-500 dark:to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.5 }}
               >
                 <BarChart3 className="w-10 h-10 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-2xl font-bold text-white dark:text-white mb-4">
                 Smart Analytics
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Real-time insights powered by machine learning for attendance patterns and performance analytics
+              <p className="text-gray-100 dark:text-gray-300 leading-relaxed">
+                Real-time insights for attendance patterns and performance analytics
               </p>
               <div className="mt-4">
                 <AnimatedStats
@@ -241,17 +223,17 @@ export default function Home() {
           <ThreeDCard className="transform hover:scale-105 transition-all duration-300">
             <div className="text-center">
               <motion.div 
-                className="w-20 h-20 bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl"
+                className="w-20 h-20 bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-rose-500 dark:to-fuchsia-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.5 }}
               >
                 <Users className="w-10 h-10 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-2xl font-bold text-white dark:text-white mb-4">
                 Easy Management
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Intuitive interface for teachers and students with real-time updates and mobile accessibility
+              <p className="text-gray-100 dark:text-gray-300 leading-relaxed">
+                Intuitive interface with real-time updates and mobile accessibility
               </p>
               <div className="mt-4 flex justify-center space-x-2">
                 <ThreeDAttendanceIcon type="present" size={30} />
@@ -280,7 +262,7 @@ export default function Home() {
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                   Welcome Back
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-700 dark:text-gray-300">
                   Select your role to get started
                 </p>
               </motion.div>
@@ -318,7 +300,7 @@ export default function Home() {
                       placeholder="student@university.edu"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500"
+                      className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-cyan-500 focus:ring-cyan-500"
                     />
                   </motion.div>
                   <motion.div
@@ -334,7 +316,7 @@ export default function Home() {
                       placeholder="John Doe"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500"
+                      className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-cyan-500 focus:ring-cyan-500"
                     />
                   </motion.div>
                 </TabsContent>
@@ -354,7 +336,7 @@ export default function Home() {
                       placeholder="teacher@university.edu"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500"
+                      className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-cyan-500 focus:ring-cyan-500"
                     />
                   </motion.div>
                   <motion.div
@@ -370,7 +352,7 @@ export default function Home() {
                       placeholder="Dr. Smith"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500"
+                      className="mt-2 bg-white/50 dark:bg-black/20 border-gray-300 dark:border-gray-600 focus:border-cyan-500 focus:ring-cyan-500"
                     />
                   </motion.div>
                 </TabsContent>
@@ -384,7 +366,7 @@ export default function Home() {
                 <Button 
                   onClick={handleLogin}
                   disabled={!selectedRole || !email || isLoading}
-                  className="w-full bg-gradient-to-r from-orange-500 to-cyan-500 hover:from-orange-600 hover:to-cyan-600 text-white font-semibold py-3 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-purple-500 dark:to-pink-500 hover:from-cyan-600 hover:to-blue-600 dark:hover:from-purple-600 dark:hover:to-pink-600 text-white font-semibold py-3 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center gap-2">

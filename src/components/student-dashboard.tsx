@@ -22,6 +22,7 @@ import { SmartScheduler } from "@/components/scheduler/smart-scheduler"
 import { SkillTracker } from "@/components/skills/skill-tracker"
 import { CareerGoals } from "@/components/career/career-goals"
 import { ThemeToggle } from "@/components/theme-toggle"
+import TrackItLogo from "@/components/ui/trackit-logo"
 
 interface Class {
   id: string
@@ -314,7 +315,7 @@ export default function StudentDashboard() {
               <><WifiOff className="w-4 h-4 text-yellow-500" /><span className="text-sm text-yellow-600 font-medium">Connecting...</span></>
             )}
             {aiUpdates.length > 0 && (
-              <Badge variant="outline" className="ml-2 bg-blue-500/20 text-blue-700 border-blue-500/30">
+              <Badge variant="outline" className="ml-2 bg-cyan-500/20 text-cyan-700 border-cyan-500/30 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/30">
                 {aiUpdates.length} AI events
               </Badge>
             )}
@@ -336,15 +337,9 @@ export default function StudentDashboard() {
           transition={{ duration: 0.5 }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <motion.div 
-              className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg"
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Award className="w-6 h-6 text-white" />
-            </motion.div>
+            <TrackItLogo size="lg" showText={false} />
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-purple-600 dark:to-pink-600 bg-clip-text text-transparent">
                 Student Dashboard
               </h1>
               <p className="text-gray-600 dark:text-gray-400">Track your attendance and academic progress</p>
@@ -516,7 +511,7 @@ export default function StudentDashboard() {
                       <div className="p-6">
                         <div className="flex justify-between items-start mb-4">
                           <h3 className="text-xl font-bold text-gray-900 dark:text-white">{classItem.name}</h3>
-                          <Badge variant="outline" className="bg-blue-500/20 text-blue-700 border-blue-500/30">
+                          <Badge variant="outline" className="bg-cyan-500/20 text-cyan-700 border-cyan-500/30 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/30">
                             Active
                           </Badge>
                         </div>
